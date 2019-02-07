@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
-  # STEP 1: A ROUTE triggers a controller action
-  # verb "/urls" => "namespace/controllers#action"
+
+  as :user do
+    put '/user/confirmation' => 'confirmations#update', :via => :patch, :as => :update_user_confirmation
+  end
+
+  devise_for :users, controllers: {
+    registraions: 'registraions',
+    confirmation: 'confirmations'
+  }
+    root to: "home#index"
+
 end
